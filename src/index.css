@@ -7,20 +7,23 @@
   box-sizing: border-box;
 }
 
+/* Lock document scroll so StickyPager wheel handler gets every scroll on all pages */
 html {
   scroll-behavior: smooth;
-  overflow-y: scroll;
+  overflow: hidden;
+  height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   background-color: #000;
   color: #fff;
   font-family: 'Outfit', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .scroll-section {
@@ -47,6 +50,15 @@ body {
     0 0 40px rgba(244, 208, 63, 0.5),
     0 0 60px rgba(244, 208, 63, 0.3),
     0 0 80px rgba(244, 208, 63, 0.1);
+}
+
+/* Aura: stronger luminous halo for hero phrases */
+.text-glow-aura {
+  text-shadow:
+    0 0 24px rgba(244, 208, 63, 0.7),
+    0 0 48px rgba(244, 208, 63, 0.45),
+    0 0 72px rgba(244, 208, 63, 0.3),
+    0 0 96px rgba(244, 208, 63, 0.15);
 }
 
 /* Glitch Animation */
@@ -144,4 +156,9 @@ body {
 
 .floating-particle {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes page3-glow-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
 }
