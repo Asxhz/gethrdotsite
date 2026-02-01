@@ -1,0 +1,7 @@
+To use a custom share card (gethr + gethr.link + motto):
+1. Open og-card.html in a browser.
+2. Screenshot or export the page at 1200×630 px.
+3. Save as og-image.png in this folder (public/).
+4. In index.html, set og:image and twitter:image to https://gethr.link/og-image.png
+
+Until then, shares use logo.png.

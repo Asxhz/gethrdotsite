@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>gethr share card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow: hidden;
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      padding: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .glow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(244,208,63,0.12) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 120px;
+      letter-spacing: -0.04em;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(244,208,63,0.4), 0 0 80px rgba(244,208,63,0.2);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .domain {
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .motto {
+      font-size: 28px;
+      font-weight: 500;
+      color: rgba(244,208,63,0.9);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+    .motto-sub {
+      font-size: 22px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="glow" aria-hidden="true"></div>
+    <h1 class="logo-text">gethr</h1>
+    <p class="domain">gethr.link</p>
+    <p class="motto">Get together.</p>
+    <p class="motto-sub">Social prediction, reimagined.</p>
+  </div>
+</body>
+</html>
