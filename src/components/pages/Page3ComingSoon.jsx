@@ -5,8 +5,9 @@
  * - Everything fades in first
  * - Hover effects only become active after intro completes
  */
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import GridScan from '../GridScan';
 
 const PLATFORMS = ['IOS', 'ANDROID', 'WEB'];
 const DIGITS = ['2', '0', '2', '6'];
@@ -33,9 +34,27 @@ export default function Page3ComingSoon({ onContinue }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center overflow-hidden">
+      {/* Background GridScan */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <GridScan
+          sensitivity={0.55}
+          lineThickness={1}
+          linesColor="#221100" // Subtle gold-tinted lines
+          gridScale={0.15}
+          scanColor="#f4d03f" // Gold scan
+          scanOpacity={0.4}
+          enablePost={!prefersReduced}
+          bloomIntensity={0.6}
+          chromaticAberration={0.002}
+          noiseIntensity={0.01}
+          scanDuration={3.0}
+          scanDelay={1.5}
+        />
+      </div>
+
       {/* Ambient grain */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.10]"
+        className="pointer-events-none absolute inset-0 opacity-[0.20] z-[1]"
         aria-hidden
         style={{
           backgroundImage:
@@ -44,24 +63,6 @@ export default function Page3ComingSoon({ onContinue }) {
           mixBlendMode: 'overlay',
         }}
       />
-
-      {/* Aura glows */}
-      {!prefersReduced && (
-        <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <motion.div
-            className="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[86vw] h-[36vmin] rounded-full blur-[110px]"
-            style={{ background: 'rgba(212,175,55,0.26)' }}
-            animate={{ scale: [1, 1.10, 1], opacity: [0.76, 1, 0.76] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
-            className="absolute left-1/2 top-[28%] -translate-x-1/2 -translate-y-1/2 w-[56vw] h-[20vmin] rounded-full blur-[90px]"
-            style={{ background: 'rgba(255,255,255,0.06)' }}
-            animate={{ y: [0, -12, 0], opacity: [0.45, 0.75, 0.45] }}
-            transition={{ duration: 6.0, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </div>
-      )}
 
       <div className="relative flex flex-col items-center justify-center text-center px-6 w-full max-w-[96vw]">
         <div className="h-[2vh] sm:h-[3vh] md:h-[4vh]" />
@@ -160,7 +161,7 @@ export default function Page3ComingSoon({ onContinue }) {
           )}
 
           <motion.p
-            className="font-black uppercase tracking-[-0.05em] leading-none text-[clamp(5.2rem,28vw,14.8rem)] sm:text-[clamp(5.8rem,30vw,15.6rem)] cursor-pointer select-none"
+            className="font-black uppercase tracking-[-0.05em] leading-none text-[clamp(5.2rem,28vw,14.8rem)] sm:text-[clamp(5.8rem,30vw,15.6rem)] cursor-pointer select-none relative overflow-hidden"
             style={{
               fontFamily: 'ui-sans-serif, system-ui, -apple-system',
               textShadow:
@@ -174,13 +175,22 @@ export default function Page3ComingSoon({ onContinue }) {
           >
             <motion.span
               animate={
-                prefersReduced ? {} : { filter: ['brightness(1)', 'brightness(1.12)', 'brightness(1)'] }
+                prefersReduced ? {} : { filter: ['brightness(1)', 'brightness(1.15)', 'brightness(1)'] }
               }
               transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
               style={{ display: 'inline-block' }}
             >
               FEB
             </motion.span>
+
+            {/* Scan shimmer effect */}
+            {!prefersReduced && (
+              <motion.div
+                className="absolute inset-x-0 h-[2px] bg-gold/40 blur-[2px] z-10"
+                animate={{ top: ['-10%', '110%'] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', delay: 0.5 }}
+              />
+            )}
           </motion.p>
         </motion.div>
 
@@ -243,12 +253,12 @@ export default function Page3ComingSoon({ onContinue }) {
                 scale: 1,
                 ...(introDone && !prefersReduced
                   ? {
-                      boxShadow: [
-                        '0 0 28px rgba(255,255,255,0.07)',
-                        '0 0 36px rgba(212,175,55,0.18)',
-                        '0 0 28px rgba(255,255,255,0.07)',
-                      ],
-                    }
+                    boxShadow: [
+                      '0 0 28px rgba(255,255,255,0.07)',
+                      '0 0 36px rgba(212,175,55,0.18)',
+                      '0 0 28px rgba(255,255,255,0.07)',
+                    ],
+                  }
                   : {}),
               }}
               transition={{
@@ -259,12 +269,12 @@ export default function Page3ComingSoon({ onContinue }) {
               whileHover={
                 introDone && !prefersReduced
                   ? {
-                      borderColor: 'rgba(212,175,55,0.98)',
-                      color: 'rgba(212,175,55,1)',
-                      boxShadow: '0 0 36px rgba(212,175,55,0.34)',
-                      y: -3,
-                      scale: 1.04,
-                    }
+                    borderColor: 'rgba(212,175,55,0.98)',
+                    color: 'rgba(212,175,55,1)',
+                    boxShadow: '0 0 36px rgba(212,175,55,0.34)',
+                    y: -3,
+                    scale: 1.04,
+                  }
                   : {}
               }
               whileTap={introDone ? { scale: 0.98 } : {}}

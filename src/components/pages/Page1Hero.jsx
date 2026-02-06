@@ -4,6 +4,7 @@
  */
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Dither from '../Dither';
 
 export default function Page1Hero({ pageProgress, onScrollDown }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -26,6 +27,18 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white selection:bg-gold/30">
+      {/* BACKGROUND PARTICLES - Fixed behind everything */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Dither
+          waveColor={[0.2, 0.2, 0.2]}
+          colorNum={4}
+          pixelSize={4}
+          waveSpeed={0.02}
+          waveAmplitude={0.5}
+          waveFrequency={2}
+        />
+      </div>
+
       {/* Aura: gold bloom behind text (no layout shift) */}
       <div className="aura-gold-bloom aura-glow-breathe" />
 
@@ -56,9 +69,9 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
               reducedMotion
                 ? {}
                 : {
-                    x: (mousePosition.x - (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)) * (particle.size * 0.02),
-                    y: (mousePosition.y - (typeof window !== 'undefined' ? window.innerHeight / 2 : 0)) * (particle.size * 0.02),
-                  }
+                  x: (mousePosition.x - (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)) * (particle.size * 0.02),
+                  y: (mousePosition.y - (typeof window !== 'undefined' ? window.innerHeight / 2 : 0)) * (particle.size * 0.02),
+                }
             }
             transition={{ type: 'spring', damping: 20, stiffness: 50 }}
             style={{
@@ -83,10 +96,10 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
               reducedMotion
                 ? {}
                 : {
-                    textShadow: ['0 0 0px white', '0 0 80px white', '0 0 0px white'],
-                    opacity: [1, 0.8, 1],
-                    scale: 1.05,
-                  }
+                  textShadow: ['0 0 0px white', '0 0 80px white', '0 0 0px white'],
+                  opacity: [1, 0.8, 1],
+                  scale: 1.05,
+                }
             }
             transition={{ duration: 0.3 }}
             className="text-[28vw] sm:text-[26vw] md:text-[24vw] leading-none font-black text-gold text-glow-strong font-serif tracking-tighter mix-blend-screen cursor-pointer whitespace-nowrap"

@@ -3,6 +3,7 @@
  */
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import LightRays from '../LightRays';
 
 const LINKS = [
   { label: 'Contact', href: 'mailto:hellogether@gmail.com' },
@@ -24,22 +25,26 @@ export default function Page4Waitlist({ onOpenWaitlist }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center overflow-hidden">
-      {/* Aura: grain */}
-      <div className="aura-noise aura-noise-drift absolute inset-0 z-0 opacity-25" />
+      {/* Background Light Rays */}
+      <div className="absolute inset-0 z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#f4d03f"
+          raysSpeed={0.8}
+          lightSpread={0.6}
+          rayLength={2.5}
+          followMouse={true}
+          mouseInfluence={0.08}
+          noiseAmount={0.05}
+          distortion={0.1}
+          pulsating={true}
+          fadeDistance={1.2}
+          saturation={1.2}
+        />
+      </div>
 
-      {/* Layered glows – bigger, more presence */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vmin] h-[80vmin] rounded-full bg-gold/8 blur-[100px] pointer-events-none"
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      />
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vmin] h-[55vmin] rounded-full bg-gold/12 blur-[70px] pointer-events-none aura-glow-breathe"
-        initial={{ scale: 0.6, opacity: 0 }}
-        animate={{ scale: 1, opacity: 0.85 }}
-        transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-      />
+      {/* Subtle overlay for the rays to make text Pop more */}
+      <div className="absolute inset-0 bg-black/20 z-[1] pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-8 w-full max-w-[95vw]">
         <motion.p
