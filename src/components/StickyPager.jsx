@@ -1,13 +1,3 @@
-/**
- * StickyPager – full-viewport section pager with controlled scroll progress.
- *
- * Tuning (edit these constants):
- * - SNAP_SENSITIVITY: wheel delta threshold to advance (higher = less sensitive)
- * - PROGRESS_STEP: how much one "scroll" advances pageProgress (0..1)
- * - PROGRESS_THRESHOLD_NEXT: pageProgress must reach this to allow next page
- * - PROGRESS_THRESHOLD_PREV: when going back, progress below this allows prev page
- * - ANIMATION_MIN_DURATION_MS: minimum time (ms) before allowing next page (optional)
- */
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import PageIndicator from './PageIndicator';
@@ -18,12 +8,11 @@ import Page4Waitlist from './pages/Page4Waitlist';
 
 const TOTAL_PAGES = 4;
 
-// --- Tuning constants ---
-const SNAP_SENSITIVITY = 28; // wheel delta threshold (lower = easier to scroll to next/prev)
-const PROGRESS_STEP = 0.2; // progress increment per scroll tick
-const PROGRESS_THRESHOLD_NEXT = 0.82; // allow next page when progress >= this
-const PROGRESS_THRESHOLD_PREV = 0.12; // allow prev when progress <= this (when going back)
-const ANIMATION_MIN_DURATION_MS = 350; // min ms on page before scroll can advance (reduces accidental skips)
+const SNAP_SENSITIVITY = 28; 
+const PROGRESS_STEP = 0.2; 
+const PROGRESS_THRESHOLD_NEXT = 0.82; 
+const PROGRESS_THRESHOLD_PREV = 0.12; 
+const ANIMATION_MIN_DURATION_MS = 350; 
 
 export default function StickyPager({ onOpenWaitlist }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -39,11 +28,10 @@ export default function StickyPager({ onOpenWaitlist }) {
     const clamped = Math.max(0, Math.min(TOTAL_PAGES - 1, index));
     if (clamped === activeIndex) return;
     setActiveIndex(clamped);
-    setPageProgress(0); // ring starts empty; fills as user scrolls within page
+    setPageProgress(0); 
     pageEnteredAt.current = Date.now();
   }, [activeIndex]);
 
-  // Use ref so wheel handler always sees latest activeIndex (avoids stale closure on pages 2/3)
   const stateRef = useRef({ activeIndex, pageProgress });
   stateRef.current = { activeIndex, pageProgress };
 
@@ -87,7 +75,6 @@ export default function StickyPager({ onOpenWaitlist }) {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  // Wheel: one listener, always use latest advanceProgress so scroll works on every page
   const advanceRef = useRef(advanceProgress);
   advanceRef.current = advanceProgress;
   useEffect(() => {

@@ -1,8 +1,3 @@
-/**
- * Vercel serverless: POST /api/waitlist
- * Body: { email } — email required.
- * Returns 200 + { ok: true } on success. Add RESEND_API_KEY + NOTIFY_EMAIL to forward signups via email.
- */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default async function handler(req, res) {
@@ -26,8 +21,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Valid email required' });
     }
 
-    // Optional: add RESEND_API_KEY + NOTIFY_EMAIL in Vercel env and install "resend"
-    // to email yourself each signup. For now we just validate and return success.
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Waitlist API error:', err);

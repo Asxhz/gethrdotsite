@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Modal from './Modal';
 
-// Reusable Section Component for consistent spacing
 const Section = ({ children, className = "" }) => (
     <div className={`min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden py-32 ${className}`}>
         {children}
@@ -13,7 +12,6 @@ export default function Hero() {
     const [modalType, setModalType] = useState(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-    // Global Particles Logic
     const [particles, setParticles] = useState([]);
     useEffect(() => {
         const newParticles = Array.from({ length: 40 }, (_, i) => ({
@@ -46,7 +44,7 @@ export default function Hero() {
 
     return (
         <div className="bg-black text-white selection:bg-gold/30">
-            {/* BACKGROUND PARTICLES - Fixed behind everything */}
+            {}
             <div className="fixed inset-0 pointer-events-none z-0">
                 {particles.map((particle) => (
                     <motion.div
@@ -69,7 +67,7 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-radial from-gold/5 via-transparent to-transparent opacity-50"></div>
             </div>
 
-            {/* SCENE 1: HERO */}
+            {}
             <Section>
                 <div className="relative z-10 p-10 cursor-default flex flex-col items-center">
                     <motion.h1
@@ -102,9 +100,7 @@ export default function Hero() {
                 </div>
             </Section>
 
-
-
-            {/* SCENE 3: COMING SOON */}
+            {}
             <Section>
                 <div className="relative z-10 flex flex-col items-center w-full px-6 text-center max-w-full mx-auto">
                     <motion.h2
@@ -166,15 +162,15 @@ export default function Hero() {
                 </div>
             </Section>
 
-            {/* SCENE 4: FOOTER */}
+            {}
             <Section className="!justify-center pb-20 pt-40">
                 <div className="w-full max-w-7xl px-6 z-10 flex flex-col items-center">
 
-                    {/* Atmospheric Glow behind Footer */}
+                    {}
                     <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-gold/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
                     <div className="relative w-full min-h-[70vh] flex items-center justify-center">
-                        {/* Draggable Playground Area */}
+                        {}
                         {[
                             {
                                 title: "Waitlist",
@@ -256,7 +252,7 @@ export default function Hero() {
                         })}
                     </div>
 
-                    {/* Final Bottom Bar */}
+                    {}
                     <div className="mt-40 pt-16 border-t border-white/5 w-full flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="text-white/20 font-bold tracking-[0.3em] uppercase text-sm">gethr.</div>
 

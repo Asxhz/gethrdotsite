@@ -12,12 +12,10 @@ function App() {
 
   return (
     <div className="bg-black min-h-screen relative overflow-hidden">
-      {/* Mouse follower – below modal z-index so it doesn’t cover dialogs */}
+      {}
       {!loading && <MouseFollower />}
 
-      {/* Hero (Navbar + StickyPager) mounted immediately behind preloader so
-          the mask reveal uncovers it with no layout shift. Interaction
-          blocked until loading completes. */}
+      {}
       <div
         className="relative w-full h-screen"
         style={{ pointerEvents: loading ? 'none' : 'auto' }}
@@ -27,8 +25,7 @@ function App() {
         <StickyPager onOpenWaitlist={() => setModalType('waitlist')} />
       </div>
 
-      {/* Preloader overlay: fixed, high z-index; mask peels away in last 300ms
-          to reveal hero; then onComplete and AnimatePresence unmounts it. */}
+      {}
       <AnimatePresence mode="wait">
         {loading && (
           <Preloader key="preloader" onComplete={() => setLoading(false)} />

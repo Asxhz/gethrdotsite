@@ -1,7 +1,3 @@
-/**
- * Minimal header – no brand or contact (moved to page 4).
- * Keeps layout space so content doesn’t jump; page indicator handles nav.
- */
 import { motion } from 'framer-motion';
 
 export default function Navbar() {

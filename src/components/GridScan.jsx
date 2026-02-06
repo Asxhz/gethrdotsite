@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { EffectComposer, RenderPass, EffectPass, BloomEffect, ChromaticAberrationEffect } from 'postprocessing';
 import * as THREE from 'three';
@@ -383,7 +382,7 @@ export default function GridScan({
                 try {
                     await DeviceOrientationEvent.requestPermission();
                 } catch {
-                    // noop
+
                 }
             }
         };

@@ -20,14 +20,13 @@ export default function Modal({ isOpen, onClose, type }) {
   const [error, setError] = useState('');
 
   const isWaitlist = type === 'waitlist';
-  // #region agent log
+
   useEffect(() => {
     if (isOpen) LOG({ location: 'Modal.jsx:open', message: 'Modal open', data: { type, isWaitlist, success }, hypothesisId: 'H1' });
   }, [isOpen, type, isWaitlist, success]);
   useEffect(() => {
     if (isOpen && !success) LOG({ location: 'Modal.jsx:formShown', message: 'Form (with Submit) shown', data: { isWaitlist }, hypothesisId: 'H2' });
   }, [isOpen, success, isWaitlist]);
-  // #endregion
 
   const saveToWaitlist = async (data) => {
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -39,9 +38,7 @@ export default function Modal({ isOpen, onClose, type }) {
       ? apiUrl
       : (typeof window !== 'undefined' ? window.location.origin : '');
 
-    // #region agent log
     LOG({ location: 'Modal.jsx:saveToWaitlist', message: 'saveToWaitlist entry', data: { baseUrl, endpoint, hasEmail: !!data?.email }, hypothesisId: 'H3' });
-    // #endregion
 
     const saveToStorage = () => {
       try {
@@ -57,9 +54,9 @@ export default function Modal({ isOpen, onClose, type }) {
 
     if (!baseUrl) {
       const ok = saveToStorage();
-      // #region agent log
+
       LOG({ location: 'Modal.jsx:saveToWaitlist', message: 'saveToWaitlist no baseUrl', data: { ok }, hypothesisId: 'H3' });
-      // #endregion
+
       return ok;
     }
 
@@ -72,17 +69,17 @@ export default function Modal({ isOpen, onClose, type }) {
         body: JSON.stringify(body),
       });
       if (res.ok) {
-        // #region agent log
+
         LOG({ location: 'Modal.jsx:saveToWaitlist', message: 'saveToWaitlist fetch ok', data: { status: res.status }, hypothesisId: 'H3' });
-        // #endregion
+
         return true;
       }
       const json = await res.json().catch(() => ({}));
       throw new Error(json.error || 'Request failed');
     } catch (err) {
-      // #region agent log
+
       LOG({ location: 'Modal.jsx:saveToWaitlist', message: 'saveToWaitlist catch', data: { errMsg: err?.message, fallback: isWaitlist && !!data?.email }, hypothesisId: 'H3' });
-      // #endregion
+
       console.warn('API failed, using localStorage:', err?.message);
       if (isWaitlist && data.email) return saveToStorage();
       return false;
@@ -93,9 +90,7 @@ export default function Modal({ isOpen, onClose, type }) {
     e.preventDefault();
     setError('');
 
-    // #region agent log
     LOG({ location: 'Modal.jsx:handleSubmit', message: 'handleSubmit entry', data: { emailLen: email?.length, isWaitlist }, hypothesisId: 'H3' });
-    // #endregion
 
     if (!validateEmail(email)) {
       setError('Valid email required');
@@ -114,17 +109,15 @@ export default function Modal({ isOpen, onClose, type }) {
     const ok = await saveToWaitlist(payload);
     await minDelay;
 
-    // #region agent log
     LOG({ location: 'Modal.jsx:handleSubmit', message: 'handleSubmit after save', data: { ok }, hypothesisId: 'H3' });
-    // #endregion
 
     if (ok) {
       setSubmitted(false);
       setSuccess(true);
       setError('');
-      // #region agent log
+
       LOG({ location: 'Modal.jsx:handleSubmit', message: 'success set true', data: {}, hypothesisId: 'H5' });
-      // #endregion
+
       setTimeout(() => {
         setSuccess(false);
         onClose();
@@ -279,7 +272,7 @@ export default function Modal({ isOpen, onClose, type }) {
                 </div>
               </div>
 
-              {/* Sticky footer: Submit always visible (not inside scroll) */}
+              {}
               {!success && (
                 <div className="flex-shrink-0 p-6 pt-3 pb-6 md:p-8 md:pt-4 md:pb-8 border-t border-white/[0.08] bg-[#080808]">
                   <button

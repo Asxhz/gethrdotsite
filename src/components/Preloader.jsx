@@ -1,23 +1,11 @@
-/**
- * Premium cinematic preloader – aura / high-end luxury tech.
- * Final frame reveals hero exactly as it appears; no layout shift.
- *
- * --- Tuning constants (edit these) ---
- * PHASE_A_MS: duration of phase A (grain + gold line), ms
- * PHASE_B_MS: end time for phase B (gethr reveal), ms
- * PHASE_C_MS: end time for phase C (glass + loading text), ms
- * REVEAL_MS: mask peel duration, ms
- * TOTAL_MS: total preloader duration; onComplete fires at TOTAL_MS
- * REDUCED_MOTION_MS: when prefers-reduced-motion, single fade duration
- */
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 
-const PHASE_A_MS = 600;   // 0–0.6s: grain + gold line
-const PHASE_B_MS = 1600;  // 0.6–1.6s: gethr blur → sharp
-const PHASE_C_MS = 2600;  // 1.6–2.6s: glass + loading text
-const REVEAL_MS = 300;    // 2.6–2.9s: mask peel
-const TOTAL_MS = 2900;    // onComplete at 2.9s (reveal ends, then unmount)
+const PHASE_A_MS = 600;   
+const PHASE_B_MS = 1600;  
+const PHASE_C_MS = 2600;  
+const REVEAL_MS = 300;    
+const TOTAL_MS = 2900;    
 const REDUCED_MOTION_MS = 500;
 
 const LOADING_LABELS = ['Initializing', 'Calibrating', 'Syncing Vision'];
@@ -25,7 +13,7 @@ const GOLD = '#D4AF37';
 const OBSIDIAN = '#030303';
 
 export default function Preloader({ onComplete }) {
-  const [phase, setPhase] = useState(0); // 0=A, 1=B, 2=C, 3=D (reveal)
+  const [phase, setPhase] = useState(0); 
   const [loadingLabelIndex, setLoadingLabelIndex] = useState(0);
   const reducedMotion = useRef(
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -56,7 +44,6 @@ export default function Preloader({ onComplete }) {
     return () => t.forEach((id) => clearTimeout(id));
   }, [onComplete]);
 
-  // Reduced motion: short fade only, no phases
   if (reducedMotion.current) {
     return (
       <motion.div
@@ -93,14 +80,14 @@ export default function Preloader({ onComplete }) {
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {/* Film grain */}
+      {}
       <div className="preloader-grain" />
 
-      {/* Architectural glows (max 3) */}
+      {}
       <div className="preloader-glow-center" style={{ opacity: phase >= 1 ? 1 : 0 }} />
       <div className="preloader-glow-edge" />
 
-      {/* Phase A: Gold sweep line (horizontal scanner) */}
+      {}
       <motion.div
         className="absolute left-0 right-0 h-[2px] z-10"
         style={{ backgroundColor: GOLD, top: '50%', transform: 'translateY(-50%)' }}
@@ -109,7 +96,7 @@ export default function Preloader({ onComplete }) {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
       />
 
-      {/* Phase B: gethr mark – blur → sharp, subtle chromatic */}
+      {}
       <motion.div
         className="relative flex items-center justify-center p-4"
         initial={{ opacity: 0 }}
@@ -135,7 +122,7 @@ export default function Preloader({ onComplete }) {
         >
           gethr<span className="opacity-90">.</span>
         </motion.h1>
-        {/* Subtle chromatic imitation: soft offset blur */}
+        {}
         <motion.h1
           className="absolute text-8xl md:text-[10rem] font-black tracking-tighter pointer-events-none select-none"
           style={{
@@ -155,7 +142,7 @@ export default function Preloader({ onComplete }) {
         </motion.h1>
       </motion.div>
 
-      {/* Phase C: Loading label (monospace) */}
+      {}
       <motion.p
         className="mt-8 font-mono text-sm uppercase tracking-[0.5em] text-white/50"
         initial={{ opacity: 0 }}
@@ -165,7 +152,7 @@ export default function Preloader({ onComplete }) {
         {LOADING_LABELS[loadingLabelIndex]}
       </motion.p>
 
-      {/* Micro particles – very subtle drift (3 only) */}
+      {}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}

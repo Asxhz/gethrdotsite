@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useState, useMemo, useId } from 'react';
 import './CurvedLoop.css';
 

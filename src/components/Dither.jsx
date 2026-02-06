@@ -1,5 +1,3 @@
-
-/* eslint-disable react/no-unknown-property */
 import { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -29,7 +27,6 @@ uniform float mouseRadius;
 uniform float colorNum;
 uniform float pixelSize;
 
-// Bayer Matrix for dithering
 const float bayerMatrix8x8[64] = float[64](
   0.0/64.0, 48.0/64.0, 12.0/64.0, 60.0/64.0,  3.0/64.0, 51.0/64.0, 15.0/64.0, 63.0/64.0,
   32.0/64.0,16.0/64.0, 44.0/64.0, 28.0/64.0, 35.0/64.0,19.0/64.0, 47.0/64.0, 31.0/64.0,
@@ -106,12 +103,11 @@ vec3 dither(vec2 uv, vec3 color) {
 
 void main() {
   vec2 uv = gl_FragCoord.xy / resolution.xy;
-  
-  // Wave Logic
+
   vec2 waveUv = uv - 0.5;
   waveUv.x *= resolution.x / resolution.y;
   float f = pattern(waveUv);
-  
+
   if (enableMouseInteraction == 1) {
     vec2 mouseNDC = (mousePos / resolution - 0.5) * vec2(1.0, -1.0);
     mouseNDC.x *= resolution.x / resolution.y;
@@ -119,12 +115,11 @@ void main() {
     float effect = 1.0 - smoothstep(0.0, mouseRadius, dist);
     f -= 0.5 * effect;
   }
-  
+
   vec3 col = mix(vec3(0.0), waveColor, f);
-  
-  // Dither Logic
+
   col = dither(uv, col);
-  
+
   gl_FragColor = vec4(col, 1.0);
 }
 `;

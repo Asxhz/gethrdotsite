@@ -1,10 +1,3 @@
-/**
- * Preloader Aura – film grain, architectural glow, keyframes.
- * Kept minimal; prefer Framer Motion for animation.
- * Colors: gold #D4AF37, obsidian #030303.
- */
-
-/* --- Film grain overlay (subtle) --- */
 .preloader-grain {
   position: absolute;
   inset: 0;
@@ -21,7 +14,6 @@
   }
 }
 
-/* --- Architectural glow layers (max 3; use transform, not box-shadow) --- */
 .preloader-glow-center {
   position: absolute;
   left: 50%;
@@ -41,7 +33,6 @@
   background: linear-gradient(180deg, rgba(212, 175, 55, 0.03) 0%, transparent 30%, transparent 70%, rgba(212, 175, 55, 0.02) 100%);
 }
 
-/* --- Mask wipe keyframe (used as fallback; Framer Motion drives clip-path when possible) --- */
 @keyframes preloader-wipe-up {
   from {
     clip-path: inset(0 0 100% 0);

@@ -1,9 +1,8 @@
-
 import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 import './LightRays.css';
 
-const DEFAULT_COLOR = '#f4d03f'; // Standard gold color for consistency
+const DEFAULT_COLOR = '#f4d03f'; 
 
 const hexToRgb = hex => {
     const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -27,7 +26,7 @@ const getAnchorAndDir = (origin, w, h) => {
             return { anchor: [0.5 * w, (1 + outside) * h], dir: [0, -1] };
         case 'bottom-right':
             return { anchor: [w, (1 + outside) * h], dir: [0, -1] };
-        default: // "top-center"
+        default: 
             return { anchor: [0.5 * w, -outside * h], dir: [0, 1] };
     }
 };
@@ -149,13 +148,13 @@ float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
   float cosAngle = dot(dirNorm, rayRefDirection);
 
   float distortedAngle = cosAngle + distortion * sin(iTime * 2.0 + length(sourceToCoord) * 0.01) * 0.2;
-  
+
   float spreadFactor = pow(max(distortedAngle, 0.0), 1.0 / max(lightSpread, 0.001));
 
   float distance = length(sourceToCoord);
   float maxDistance = iResolution.x * rayLength;
   float lengthFalloff = clamp((maxDistance - distance) / maxDistance, 0.0, 1.0);
-  
+
   float fadeFalloff = clamp((iResolution.x * fadeDistance - distance) / (iResolution.x * fadeDistance), 0.5, 1.0);
   float pulse = pulsating > 0.5 ? (0.8 + 0.2 * sin(iTime * speed * 3.0)) : 1.0;
 
@@ -170,7 +169,7 @@ float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   vec2 coord = vec2(fragCoord.x, iResolution.y - fragCoord.y);
-  
+
   vec2 finalRayDir = rayDir;
   if (mouseInfluence > 0.0) {
     vec2 mouseScreenPos = mousePos * iResolution.xy;

@@ -1,10 +1,3 @@
-/**
- * Page 3: LAUNCHING → FEB → 2026 → platform pills.
- * Update:
- * - Removed 2026 flashing (no infinite y loop)
- * - Everything fades in first
- * - Hover effects only become active after intro completes
- */
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import GridScan from '../GridScan';
@@ -34,14 +27,14 @@ export default function Page3ComingSoon({ onContinue }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center overflow-hidden">
-      {/* Background GridScan */}
+      {}
       <div className="absolute inset-0 z-0 opacity-40">
         <GridScan
           sensitivity={0.55}
           lineThickness={1}
-          linesColor="#221100" // Subtle gold-tinted lines
+          linesColor="#221100" 
           gridScale={0.15}
-          scanColor="#f4d03f" // Gold scan
+          scanColor="#f4d03f" 
           scanOpacity={0.4}
           enablePost={!prefersReduced}
           bloomIntensity={0.6}
@@ -52,7 +45,7 @@ export default function Page3ComingSoon({ onContinue }) {
         />
       </div>
 
-      {/* Ambient grain */}
+      {}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.20] z-[1]"
         aria-hidden
@@ -67,14 +60,14 @@ export default function Page3ComingSoon({ onContinue }) {
       <div className="relative flex flex-col items-center justify-center text-center px-6 w-full max-w-[96vw]">
         <div className="h-[2vh] sm:h-[3vh] md:h-[4vh]" />
 
-        {/* LAUNCHING (BIGGER + CLEAN GLOW + MASK WIPE) */}
+        {}
         <motion.div
           className="relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Glow plate behind LAUNCHING */}
+          {}
           {!prefersReduced && (
             <motion.div
               className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[86vw] sm:w-[68vw] h-[10vmin] sm:h-[8vmin] rounded-full blur-[40px]"
@@ -85,7 +78,7 @@ export default function Page3ComingSoon({ onContinue }) {
             />
           )}
 
-          {/* Mask wipe */}
+          {}
           <motion.div
             className="relative inline-block overflow-hidden"
             initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -122,7 +115,7 @@ export default function Page3ComingSoon({ onContinue }) {
             </motion.p>
           </motion.div>
 
-          {/* Gold sweep under LAUNCHING (one-time, clean) */}
+          {}
           {!prefersReduced && (
             <motion.div
               className="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-3 sm:-bottom-4 w-[84%] h-[2px] blur-[0.2px]"
@@ -139,7 +132,7 @@ export default function Page3ComingSoon({ onContinue }) {
           )}
         </motion.div>
 
-        {/* FEB */}
+        {}
         <motion.div
           className="relative mt-7 sm:mt-9"
           initial={{ opacity: 0 }}
@@ -183,7 +176,7 @@ export default function Page3ComingSoon({ onContinue }) {
               FEB
             </motion.span>
 
-            {/* Scan shimmer effect */}
+            {}
             {!prefersReduced && (
               <motion.div
                 className="absolute inset-x-0 h-[2px] bg-gold/40 blur-[2px] z-10"
@@ -194,7 +187,7 @@ export default function Page3ComingSoon({ onContinue }) {
           </motion.p>
         </motion.div>
 
-        {/* 2026 (NO FLASHING) */}
+        {}
         <motion.div
           className="flex items-center justify-center gap-[0.06em] sm:gap-1 mt-6 sm:mt-8"
           initial={{ opacity: 0, y: 12, filter: 'blur(10px)' }}
@@ -229,7 +222,7 @@ export default function Page3ComingSoon({ onContinue }) {
           ))}
         </motion.div>
 
-        {/* Platform pills (hover only after intro) */}
+        {}
         <motion.div
           className="mt-12 sm:mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-5"
           initial={{ opacity: 0, y: 14, filter: 'blur(10px)' }}

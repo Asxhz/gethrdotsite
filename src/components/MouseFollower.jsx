@@ -1,7 +1,3 @@
-/**
- * Mouse follower – refined pointer; offset from cursor, premium gold accent.
- * Hidden on touch and when prefers-reduced-motion.
- */
 import { motion, useSpring } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -42,7 +38,7 @@ export default function MouseFollower() {
       className="fixed inset-0 pointer-events-none z-[60]"
       initial={false}
     >
-      {/* Single refined ring – warm gold, soft glow */}
+      {}
       <motion.div
         className="absolute left-0 top-0 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
         style={{
