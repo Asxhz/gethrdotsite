@@ -272,7 +272,6 @@ export default function Modal({ isOpen, onClose, type }) {
                 </div>
               </div>
 
-              {}
               {!success && (
                 <div className="flex-shrink-0 p-6 pt-3 pb-6 md:p-8 md:pt-4 md:pb-8 border-t border-white/[0.08] bg-[#080808]">
                   <button

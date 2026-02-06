@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Dither from '../Dither';
 
 export default function Page1Hero({ pageProgress, onScrollDown }) {
@@ -23,7 +23,6 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white selection:bg-gold/30">
-      {}
       <div className="absolute inset-0 z-0 opacity-40">
         <Dither
           waveColor={[0.2, 0.2, 0.2]}
@@ -35,16 +34,12 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
         />
       </div>
 
-      {}
       <div className="aura-gold-bloom aura-glow-breathe" />
 
-      {}
       <div className="aura-noise aura-noise-drift absolute inset-0 z-[1]" />
 
-      {}
       <div className="aura-lens-flare z-[1]" />
 
-      {}
       {!reducedMotion && (
         <motion.div
           className="absolute inset-0 pointer-events-none z-[1] opacity-30"
@@ -55,7 +50,6 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
         />
       )}
 
-      {}
       <div className="fixed inset-0 pointer-events-none z-0">
         {particles.map((particle) => (
           <motion.div
@@ -82,7 +76,7 @@ export default function Page1Hero({ pageProgress, onScrollDown }) {
         <div className="absolute inset-0 bg-gradient-radial from-gold/5 via-transparent to-transparent opacity-50" />
       </div>
 
-      {}
+      { }
       <div className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center py-32">
         <div className="relative z-10 p-10 cursor-default flex flex-col items-center">
           <motion.h1

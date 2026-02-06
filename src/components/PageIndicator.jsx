@@ -17,7 +17,6 @@ export default function PageIndicator({ total, activeIndex, pageProgress, onSele
           aria-label={`Go to page ${i + 1}`}
           aria-current={activeIndex === i ? 'true' : undefined}
         >
-          {}
           {activeIndex === i && (
             <svg className="absolute inset-0 w-10 h-10 -rotate-90" viewBox="0 0 40 40">
               <circle
@@ -44,7 +43,6 @@ export default function PageIndicator({ total, activeIndex, pageProgress, onSele
               />
             </svg>
           )}
-          {}
           <motion.span
             className={`relative w-2 h-2 rounded-full ${
               activeIndex === i ? 'bg-gold' : 'bg-white/30 hover:bg-white/50'

@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import LightRays from '../LightRays';
 
 const LINKS = [
@@ -22,7 +22,6 @@ export default function Page4Waitlist({ onOpenWaitlist }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center overflow-hidden">
-      {}
       <div className="absolute inset-0 z-0">
         <LightRays
           raysOrigin="top-center"
@@ -40,7 +39,6 @@ export default function Page4Waitlist({ onOpenWaitlist }) {
         />
       </div>
 
-      {}
       <div className="absolute inset-0 bg-black/20 z-[1] pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-8 w-full max-w-[95vw]">
@@ -53,7 +51,6 @@ export default function Page4Waitlist({ onOpenWaitlist }) {
           no spam. one drop.
         </motion.p>
 
-        {}
         <motion.button
           type="button"
           onClick={onOpenWaitlist}
@@ -82,7 +79,7 @@ export default function Page4Waitlist({ onOpenWaitlist }) {
           Enter or click
         </motion.p>
 
-        {}
+        { }
         <motion.div
           className="mt-14 sm:mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-10"
           initial={{ opacity: 0, y: 12 }}

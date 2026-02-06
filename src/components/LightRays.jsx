@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 import './LightRays.css';
 
-const DEFAULT_COLOR = '#f4d03f'; 
+const DEFAULT_COLOR = '#f4d03f';
 
 const hexToRgb = hex => {
     const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -26,7 +26,7 @@ const getAnchorAndDir = (origin, w, h) => {
             return { anchor: [0.5 * w, (1 + outside) * h], dir: [0, -1] };
         case 'bottom-right':
             return { anchor: [w, (1 + outside) * h], dir: [0, -1] };
-        default: 
+        default:
             return { anchor: [0.5 * w, -outside * h], dir: [0, 1] };
     }
 };

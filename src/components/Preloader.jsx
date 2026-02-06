@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 
-const PHASE_A_MS = 600;   
-const PHASE_B_MS = 1600;  
-const PHASE_C_MS = 2600;  
-const REVEAL_MS = 300;    
-const TOTAL_MS = 2900;    
+const PHASE_A_MS = 600;
+const PHASE_B_MS = 1600;
+const PHASE_C_MS = 2600;
+const REVEAL_MS = 300;
+const TOTAL_MS = 2900;
 const REDUCED_MOTION_MS = 500;
 
 const LOADING_LABELS = ['Initializing', 'Calibrating', 'Syncing Vision'];
@@ -13,7 +13,7 @@ const GOLD = '#D4AF37';
 const OBSIDIAN = '#030303';
 
 export default function Preloader({ onComplete }) {
-  const [phase, setPhase] = useState(0); 
+  const [phase, setPhase] = useState(0);
   const [loadingLabelIndex, setLoadingLabelIndex] = useState(0);
   const reducedMotion = useRef(
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -80,14 +80,11 @@ export default function Preloader({ onComplete }) {
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {}
       <div className="preloader-grain" />
 
-      {}
       <div className="preloader-glow-center" style={{ opacity: phase >= 1 ? 1 : 0 }} />
       <div className="preloader-glow-edge" />
 
-      {}
       <motion.div
         className="absolute left-0 right-0 h-[2px] z-10"
         style={{ backgroundColor: GOLD, top: '50%', transform: 'translateY(-50%)' }}
@@ -96,7 +93,6 @@ export default function Preloader({ onComplete }) {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
       />
 
-      {}
       <motion.div
         className="relative flex items-center justify-center p-4"
         initial={{ opacity: 0 }}
@@ -122,7 +118,6 @@ export default function Preloader({ onComplete }) {
         >
           gethr<span className="opacity-90">.</span>
         </motion.h1>
-        {}
         <motion.h1
           className="absolute text-8xl md:text-[10rem] font-black tracking-tighter pointer-events-none select-none"
           style={{
@@ -142,7 +137,6 @@ export default function Preloader({ onComplete }) {
         </motion.h1>
       </motion.div>
 
-      {}
       <motion.p
         className="mt-8 font-mono text-sm uppercase tracking-[0.5em] text-white/50"
         initial={{ opacity: 0 }}
@@ -152,7 +146,6 @@ export default function Preloader({ onComplete }) {
         {LOADING_LABELS[loadingLabelIndex]}
       </motion.p>
 
-      {}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}

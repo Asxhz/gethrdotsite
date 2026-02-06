@@ -8,11 +8,11 @@ import Page4Waitlist from './pages/Page4Waitlist';
 
 const TOTAL_PAGES = 4;
 
-const SNAP_SENSITIVITY = 28; 
-const PROGRESS_STEP = 0.2; 
-const PROGRESS_THRESHOLD_NEXT = 0.82; 
-const PROGRESS_THRESHOLD_PREV = 0.12; 
-const ANIMATION_MIN_DURATION_MS = 350; 
+const SNAP_SENSITIVITY = 28;
+const PROGRESS_STEP = 0.2;
+const PROGRESS_THRESHOLD_NEXT = 0.82;
+const PROGRESS_THRESHOLD_PREV = 0.12;
+const ANIMATION_MIN_DURATION_MS = 350;
 
 export default function StickyPager({ onOpenWaitlist }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -28,7 +28,7 @@ export default function StickyPager({ onOpenWaitlist }) {
     const clamped = Math.max(0, Math.min(TOTAL_PAGES - 1, index));
     if (clamped === activeIndex) return;
     setActiveIndex(clamped);
-    setPageProgress(0); 
+    setPageProgress(0);
     pageEnteredAt.current = Date.now();
   }, [activeIndex]);
 

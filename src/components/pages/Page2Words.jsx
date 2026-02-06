@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import CurvedLoop from '../CurvedLoop';
 import RippleGrid from '../RippleGrid';
+import CurvedLoop from '../CurvedLoop';
 
 const line1 = 'One tap. Any asset.';
 
@@ -21,7 +21,6 @@ export default function Page2Words({ onContinue }) {
 
   return (
     <div className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center overflow-hidden min-h-screen">
-      {}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.10] z-0"
         aria-hidden
@@ -34,7 +33,6 @@ export default function Page2Words({ onContinue }) {
         }}
       />
 
-      {}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <RippleGrid
           enableRainbow={false}
@@ -48,7 +46,6 @@ export default function Page2Words({ onContinue }) {
         />
       </div>
 
-      {}
       <div className="absolute top-10 sm:top-12 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.2, filter: 'blur(10px)' }}
@@ -77,10 +74,8 @@ export default function Page2Words({ onContinue }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        {}
         <div className="min-h-screen flex flex-col items-center justify-center text-center">
 
-          {}
           <div className="w-full scale-[0.95] sm:scale-110 origin-center">
             <CurvedLoop
               marqueeText="One tap. Any asset. "
@@ -90,7 +85,6 @@ export default function Page2Words({ onContinue }) {
             />
           </div>
 
-          {}
           <div className="w-full -mt-20 sm:-mt-24 scale-[0.9] sm:scale-105 origin-center">
             <CurvedLoop
               marqueeText="Simple ✦ Fast ✦ Nifty ✦ "
@@ -100,7 +94,6 @@ export default function Page2Words({ onContinue }) {
             />
           </div>
 
-          {}
           <div className="w-full -mt-20 sm:-mt-24 scale-[0.8] sm:scale-[0.95] md:scale-100 origin-center">
             <CurvedLoop
               marqueeText="One tap. Any asset. "
@@ -110,7 +103,6 @@ export default function Page2Words({ onContinue }) {
             />
           </div>
 
-          {}
           <div className="w-full -mt-20 sm:-mt-24 scale-[0.7] sm:scale-[0.85] md:scale-[0.9] origin-center">
             <CurvedLoop
               marqueeText="Simple ✦ Fast ✦ Nifty ✦ "
@@ -120,7 +112,6 @@ export default function Page2Words({ onContinue }) {
             />
           </div>
 
-          {}
           <div className="h-[4vh] sm:h-[6vh]" />
 
           {onContinue && (
