@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Preloader from './components/Preloader';
-import StickyPager from './components/StickyPager';
 import Navbar from './components/Navbar';
 import Modal from './components/Modal';
 import MouseFollower from './components/MouseFollower';
+import Page1Hero from './components/pages/Page1Hero';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -12,20 +12,17 @@ function App() {
 
   return (
     <div className="bg-black min-h-screen relative overflow-hidden">
-      { }
       {!loading && <MouseFollower />}
 
-      { }
       <div
         className="relative w-full h-screen"
         style={{ pointerEvents: loading ? 'none' : 'auto' }}
         aria-hidden={loading}
       >
         <Navbar />
-        <StickyPager onOpenWaitlist={() => setModalType('waitlist')} />
+        <Page1Hero onOpenWaitlist={() => setModalType('waitlist')} />
       </div>
 
-      { }
       <AnimatePresence mode="wait">
         {loading && (
           <Preloader key="preloader" onComplete={() => setLoading(false)} />

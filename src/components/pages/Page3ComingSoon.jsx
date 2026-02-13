@@ -1,308 +1,224 @@
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import GridScan from '../GridScan';
+import TextLoop from '../TextLoop';
 
-const PLATFORMS = ['IOS', 'ANDROID', 'WEB'];
-const DIGITS = ['2', '0', '2', '6'];
+const NODES = [
+  { code: 'INT', label: 'Capture intent' },
+  { code: 'SNP', label: 'Snapshot assets' },
+  { code: 'ALC', label: 'Optimize allocation' },
+  { code: 'VLD', label: 'Validate compliance' },
+  { code: 'RTE', label: 'Route liquidity' },
+  { code: 'STL', label: 'Final settlement' },
+];
+
+const LOOP_WORDS = [
+  'cross-asset spending',
+  'instant settlement',
+  'global payments',
+  'portfolio liquidity',
+];
 
 export default function Page3ComingSoon({ onContinue }) {
-  const prefersReduced = useReducedMotion();
-  const [introDone, setIntroDone] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setIntroDone(true), 1400);
-    return () => clearTimeout(t);
-  }, []);
-
-  const popHard = {
-    hidden: { opacity: 0, y: 34, scale: 0.84, filter: 'blur(18px)' },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-      transition: { type: 'spring', stiffness: 640, damping: 16, mass: 0.55 },
-    },
-  };
-
   return (
     <div className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-40">
-        <GridScan
-          sensitivity={0.55}
-          lineThickness={1}
-          linesColor="#221100"
-          gridScale={0.15}
-          scanColor="#f4d03f"
-          scanOpacity={0.4}
-          enablePost={!prefersReduced}
-          bloomIntensity={0.6}
-          chromaticAberration={0.002}
-          noiseIntensity={0.01}
-          scanDuration={3.0}
-          scanDelay={1.5}
+
+      <div className="relative z-10 flex flex-col items-center justify-center px-6 sm:px-10 w-full max-w-[1000px]">
+
+        <h2
+          className="text-center leading-[1.15] tracking-[-0.025em]"
+          style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: 'clamp(1.8rem, 5vw, 3.2rem)',
+          }}
+        >
+          <span className="text-white/50 font-light">Every payment runs through</span>
+          <br />
+          <span className="text-white font-bold">our real&#8209;time liquidity engine.</span>
+        </h2>
+
+        <div className="mt-14 sm:mt-16 md:mt-20 w-full">
+          <div className="hidden md:flex items-start justify-center gap-1">
+            {NODES.map((node, i) => (
+              <div key={node.code} className="flex items-center">
+                <div className="flex flex-col items-center" style={{ width: '120px' }}>
+                  <div
+                    className="flex items-center justify-center rounded-[6px] border font-mono font-bold"
+                    style={{
+                      width: '56px',
+                      height: '34px',
+                      fontSize: '0.8rem',
+                      letterSpacing: '0.15em',
+                      borderColor: 'rgba(212,175,55,0.25)',
+                      color: 'rgba(212,175,55,0.8)',
+                      background: 'rgba(212,175,55,0.04)',
+                    }}
+                  >
+                    {node.code}
+                  </div>
+                  <span
+                    className="font-mono text-center leading-tight font-medium"
+                    style={{
+                      marginTop: '10px',
+                      fontSize: '0.68rem',
+                      letterSpacing: '0.04em',
+                      color: 'rgba(255,255,255,0.35)',
+                    }}
+                  >
+                    {node.label}
+                  </span>
+                </div>
+
+                {i < NODES.length - 1 && (
+                  <div
+                    className="rounded-full"
+                    style={{
+                      width: '28px',
+                      height: '1px',
+                      marginTop: '-20px',
+                      background: 'linear-gradient(90deg, rgba(212,175,55,0.08), rgba(212,175,55,0.2), rgba(212,175,55,0.08))',
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex md:hidden flex-col gap-0 mx-auto w-fit">
+            {NODES.map((node, i) => (
+              <div key={node.code}>
+                <div className="flex items-center gap-4">
+                  <div
+                    className="flex items-center justify-center rounded-[5px] border font-mono font-bold flex-shrink-0"
+                    style={{
+                      width: '46px',
+                      height: '28px',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.14em',
+                      borderColor: 'rgba(212,175,55,0.25)',
+                      color: 'rgba(212,175,55,0.8)',
+                      background: 'rgba(212,175,55,0.04)',
+                    }}
+                  >
+                    {node.code}
+                  </div>
+                  <span
+                    className="font-mono font-medium"
+                    style={{
+                      fontSize: '0.72rem',
+                      letterSpacing: '0.04em',
+                      color: 'rgba(255,255,255,0.35)',
+                    }}
+                  >
+                    {node.label}
+                  </span>
+                </div>
+
+                {i < NODES.length - 1 && (
+                  <div
+                    style={{
+                      width: '1px',
+                      height: '16px',
+                      marginLeft: '22px',
+                      marginTop: '4px',
+                      marginBottom: '4px',
+                      background: 'rgba(212,175,55,0.12)',
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div
+          className="mx-auto"
+          style={{
+            marginTop: 'clamp(2.5rem, 5vh, 3.5rem)',
+            width: '80px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent)',
+          }}
         />
-      </div>
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.20] z-[1]"
-        aria-hidden
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0 2px, transparent 2px), radial-gradient(circle at 80% 55%, rgba(255,255,255,0.05) 0 1px, transparent 1px)',
-          backgroundSize: '140px 140px',
-          mixBlendMode: 'overlay',
-        }}
-      />
-
-      <div className="relative flex flex-col items-center justify-center text-center px-6 w-full max-w-[96vw]">
-        <div className="h-[2vh] sm:h-[3vh] md:h-[4vh]" />
-
-        <motion.div
-          className="relative"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        <div
+          className="flex flex-col items-center"
+          style={{ marginTop: 'clamp(1.8rem, 3vh, 2.5rem)', gap: '8px' }}
         >
-          {!prefersReduced && (
-            <motion.div
-              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[86vw] sm:w-[68vw] h-[10vmin] sm:h-[8vmin] rounded-full blur-[40px]"
-              style={{ background: 'rgba(212,175,55,0.22)' }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: [0.25, 0.7, 0.35], scale: [0.96, 1.03, 0.98] }}
-              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          )}
-
-          <motion.div
-            className="relative inline-block overflow-hidden"
-            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-            animate={{ clipPath: 'inset(0 0% 0 0)' }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
-          >
-            <motion.p
-              className="
-                uppercase
-                font-black
-                tracking-[0.42em]
-                sm:tracking-[0.52em]
-                text-[clamp(1.3rem,5.2vw,2.9rem)]
-                sm:text-[clamp(1.4rem,4.8vw,3.2rem)]
-                text-white
-                cursor-pointer select-none
-              "
-              style={{
-                fontFamily: 'ui-sans-serif, system-ui, -apple-system',
-                textShadow:
-                  '0 0 22px rgba(212,175,55,0.35), 0 0 60px rgba(212,175,55,0.22), 0 0 120px rgba(212,175,55,0.12)',
-              }}
-              initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-              animate={
-                prefersReduced
-                  ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-                  : { opacity: 1, y: 0, filter: 'blur(0px)' }
-              }
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              LAUNCHING
-            </motion.p>
-          </motion.div>
-
-          {!prefersReduced && (
-            <motion.div
-              className="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-3 sm:-bottom-4 w-[84%] h-[2px] blur-[0.2px]"
-              style={{
-                background:
-                  'linear-gradient(90deg, transparent, rgba(212,175,55,0.9), rgba(255,245,200,0.95), rgba(212,175,55,0.9), transparent)',
-                boxShadow: '0 0 28px rgba(212,175,55,0.55), 0 0 80px rgba(212,175,55,0.20)',
-                opacity: 0.85,
-              }}
-              initial={{ scaleX: 0.15, opacity: 0 }}
-              animate={{ scaleX: [0.15, 1.15, 1], opacity: [0, 1, 0.35] }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
-            />
-          )}
-        </motion.div>
-
-        <motion.div
-          className="relative mt-7 sm:mt-9"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
-        >
-          {!prefersReduced && (
-            <motion.div
-              className="pointer-events-none absolute left-[-15%] top-1/2 -translate-y-1/2 w-[130%] h-[12px] sm:h-[14px] blur-[12px]"
-              style={{
-                background:
-                  'linear-gradient(90deg, transparent, rgba(212,175,55,0.60), rgba(255,245,200,0.75), rgba(212,175,55,0.60), transparent)',
-                opacity: 0.7,
-              }}
-              initial={{ x: '-50%', opacity: 0 }}
-              animate={{ x: '50%', opacity: [0, 0.9, 0] }}
-              transition={{ duration: 1.15, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
-            />
-          )}
-
-          <motion.p
-            className="font-black uppercase tracking-[-0.05em] leading-none text-[clamp(5.2rem,28vw,14.8rem)] sm:text-[clamp(5.8rem,30vw,15.6rem)] cursor-pointer select-none relative overflow-hidden"
+          <p
+            className="text-center"
             style={{
-              fontFamily: 'ui-sans-serif, system-ui, -apple-system',
-              textShadow:
-                '0 0 70px rgba(212,175,55,0.78), 0 0 150px rgba(212,175,55,0.42), 0 0 220px rgba(212,175,55,0.18)',
+              fontFamily: 'ui-sans-serif, system-ui, -apple-system, sans-serif',
+              fontSize: 'clamp(0.85rem, 1.8vw, 1.05rem)',
+              letterSpacing: '0.01em',
+              color: 'rgba(255,255,255,0.55)',
             }}
-            variants={popHard}
-            initial="hidden"
-            animate="show"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
           >
-            <motion.span
-              animate={
-                prefersReduced ? {} : { filter: ['brightness(1)', 'brightness(1.15)', 'brightness(1)'] }
-              }
-              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
-              style={{ display: 'inline-block' }}
-            >
-              FEB
-            </motion.span>
+            Your portfolio <span className="font-semibold text-white/80">stays intact.</span>
+          </p>
+          <p
+            className="text-center"
+            style={{
+              fontFamily: 'ui-sans-serif, system-ui, -apple-system, sans-serif',
+              fontSize: 'clamp(0.85rem, 1.8vw, 1.05rem)',
+              letterSpacing: '0.01em',
+              color: 'rgba(255,255,255,0.55)',
+            }}
+          >
+            The merchant <span className="font-semibold text-white/80">gets paid.</span>
+          </p>
+          <p
+            className="text-center"
+            style={{
+              fontFamily: 'ui-sans-serif, system-ui, -apple-system, sans-serif',
+              fontSize: 'clamp(0.85rem, 1.8vw, 1.05rem)',
+              letterSpacing: '0.01em',
+              color: 'rgba(255,255,255,0.55)',
+            }}
+          >
+            The system <span className="font-semibold text-white/80">handles the rest.</span>
+          </p>
+        </div>
 
-            {!prefersReduced && (
-              <motion.div
-                className="absolute inset-x-0 h-[2px] bg-gold/40 blur-[2px] z-10"
-                animate={{ top: ['-10%', '110%'] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', delay: 0.5 }}
-              />
-            )}
-          </motion.p>
-        </motion.div>
+        <div className="flex items-center gap-2" style={{ marginTop: 'clamp(2rem, 4vh, 3rem)' }}>
+          <span
+            className="font-mono uppercase font-medium"
+            style={{ color: 'rgba(212,175,55,0.4)', fontSize: 'clamp(0.58rem, 1.2vw, 0.68rem)', letterSpacing: '0.3em' }}
+          >
+            Built for
+          </span>
+          <TextLoop
+            className="font-mono uppercase font-bold"
+            interval={2.5}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {LOOP_WORDS.map((word) => (
+              <span
+                key={word}
+                style={{ color: 'rgba(212,175,55,0.7)', fontSize: 'clamp(0.58rem, 1.2vw, 0.68rem)', letterSpacing: '0.3em' }}
+              >
+                {word}
+              </span>
+            ))}
+          </TextLoop>
+        </div>
 
-        <motion.div
-          className="flex items-center justify-center gap-[0.06em] sm:gap-1 mt-6 sm:mt-8"
-          initial={{ opacity: 0, y: 12, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ delay: 0.55, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {DIGITS.map((d, i) => (
-            <motion.span
-              key={i}
-              className="font-black tracking-[-0.06em] text-[clamp(4.0rem,20vw,11.2rem)] sm:text-[clamp(4.4rem,22vw,12rem)] leading-none cursor-pointer select-none"
-              style={{
-                fontFamily: 'ui-sans-serif, system-ui, -apple-system',
-                color: 'transparent',
-                WebkitTextStroke: '2px rgba(255,255,255,0.93)',
-                textShadow: '0 0 28px rgba(212,175,55,0.32), 0 0 70px rgba(212,175,55,0.14)',
-                filter: 'drop-shadow(0 0 22px rgba(212,175,55,0.22))',
-              }}
-              initial={{ opacity: 0, y: 18, scale: 0.90, filter: 'blur(12px)' }}
-              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              transition={{
-                type: 'spring',
-                stiffness: 520,
-                damping: 18,
-                mass: 0.6,
-                delay: 0.62 + i * 0.06,
-              }}
-              whileHover={{ scale: 1.08, y: -4 }}
-              whileTap={{ scale: 0.96 }}
-            >
-              {d}
-            </motion.span>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="mt-12 sm:mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-5"
-          initial={{ opacity: 0, y: 14, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ delay: 0.82, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {PLATFORMS.map((label, i) => (
-            <motion.span
-              key={label}
-              className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full border-2 border-white/75 text-white/95 text-[clamp(0.68rem,1.9vw,1rem)] font-medium uppercase tracking-[0.24em]"
-              style={{
-                fontFamily: 'ui-sans-serif, system-ui, -apple-system',
-                textShadow: '0 0 20px rgba(212,175,55,0.20)',
-                boxShadow: '0 0 28px rgba(255,255,255,0.07)',
-                background: 'rgba(255,255,255,0.03)',
-                backdropFilter: 'blur(12px)',
-              }}
-              initial={{ opacity: 0, scale: 0.88 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                ...(introDone && !prefersReduced
-                  ? {
-                    boxShadow: [
-                      '0 0 28px rgba(255,255,255,0.07)',
-                      '0 0 36px rgba(212,175,55,0.18)',
-                      '0 0 28px rgba(255,255,255,0.07)',
-                    ],
-                  }
-                  : {}),
-              }}
-              transition={{
-                opacity: { delay: 0.90 + i * 0.07, type: 'spring', stiffness: 420, damping: 16, mass: 0.55 },
-                scale: { delay: 0.90 + i * 0.07, type: 'spring', stiffness: 420, damping: 16, mass: 0.55 },
-                boxShadow: { duration: 2.2, repeat: Infinity, ease: 'easeInOut', delay: 1.6 + i * 0.2 },
-              }}
-              whileHover={
-                introDone && !prefersReduced
-                  ? {
-                    borderColor: 'rgba(212,175,55,0.98)',
-                    color: 'rgba(212,175,55,1)',
-                    boxShadow: '0 0 36px rgba(212,175,55,0.34)',
-                    y: -3,
-                    scale: 1.04,
-                  }
-                  : {}
-              }
-              whileTap={introDone ? { scale: 0.98 } : {}}
-            >
-              {label}
-            </motion.span>
-          ))}
-        </motion.div>
-
-        <div className="h-[9vh] sm:h-[11vh] md:h-[12vh]" />
+        <div style={{ height: 'clamp(2rem, 5vh, 3.5rem)' }} />
 
         {onContinue && (
-          <motion.button
+          <button
             type="button"
             onClick={onContinue}
-            className="flex flex-col items-center cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(212,175,55,0.40)] rounded"
-            whileHover={introDone ? { scale: 1.1 } : {}}
-            whileTap={introDone ? { scale: 0.98 } : {}}
-            initial={{ opacity: 0, y: 18, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ delay: 1.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center cursor-pointer group focus:outline-none focus-visible:ring-2 rounded"
           >
-            <motion.span
-              className="uppercase tracking-[0.60em] text-[clamp(0.8rem,2.4vw,1.05rem)] font-medium mb-3"
-              style={{ color: 'rgba(212,175,55,0.62)', textShadow: '0 0 20px rgba(212,175,55,0.22)' }}
-              animate={prefersReduced ? {} : { y: [0, 6, 0], opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2.3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              Continue
-            </motion.span>
-            <motion.svg
-              className="w-6 h-6 sm:w-7 sm:h-7"
-              style={{ color: 'rgba(212,175,55,0.62)', filter: 'drop-shadow(0 0 16px rgba(212,175,55,0.22))' }}
+            <svg
+              className="w-5 h-5 sm:w-6 sm:h-6"
+              style={{ color: 'rgba(212,175,55,0.35)' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              animate={prefersReduced ? {} : { y: [0, 4, 0] }}
-              transition={{ duration: 2.3, repeat: Infinity, ease: 'easeInOut', delay: 0.1 }}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </motion.svg>
-          </motion.button>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
         )}
-
-        <div className="h-[3vh] sm:h-[4vh]" />
       </div>
     </div>
   );
